@@ -26,6 +26,7 @@ export const LoginForm = ({ onSubmit }: LoginFormProps) => {
     <form className="login-form" onSubmit={handleSubmit}>
       <input
         className="input-field"
+        required
         type="text"
         id="username"
         name="username"
@@ -35,6 +36,7 @@ export const LoginForm = ({ onSubmit }: LoginFormProps) => {
       />
       <input
         className="input-field"
+        required
         type="password"
         id="password"
         name="password"
