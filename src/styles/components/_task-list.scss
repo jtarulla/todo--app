@@ -1,0 +1,50 @@
+@import '../utils/colors';
+@import '../utils/variables';
+
+.task-list {
+  .task-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+  
+    .checkbox-wrapper {
+      position: relative;
+      width: $checkbox-size;
+      height: $checkbox-size;
+      border: $checkbox-border-width solid $button-color;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-right: 16px;
+  
+      input[type='checkbox'] {
+        display: none;
+  
+        &:checked + .checkbox-indicator {
+          &::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 6px;
+            height: 12px;
+            border: solid $done-color;
+            border-width: 0 3px 3px 0;
+            transform: translate(-50%, -50%) rotate(45deg);
+          }
+        }
+      }
+    }
+  
+    .task-title {
+      font-size: $task-font-size;
+      line-height: 1.2;
+      color: rgb(255 255 255);
+      transition: 0.2s color;
+  
+      &.task-completed {
+        color: rgb(255 255 255 / 30%);
+        text-decoration: line-through;
+      }
+    }
+  }
+}

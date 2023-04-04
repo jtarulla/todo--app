@@ -58,7 +58,7 @@ describe('LoginPage', () => {
     await waitFor(() => {
       expect(mockLogin).toHaveBeenCalledWith('testuser', 'wrongpassword')
       expect(alertSpy).toHaveBeenCalledWith(
-        'Password does not match the username'
+        'The password does not match the username'
       )
     })
   })

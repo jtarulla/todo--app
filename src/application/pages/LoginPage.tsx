@@ -14,7 +14,7 @@ const LoginPage = () => {
         navigate('/')
       }
     } catch (e) {
-      alert('Password does not match the username')
+      alert('The password does not match the username')
     }
   }
 

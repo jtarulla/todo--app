@@ -9,13 +9,12 @@ import {
   setLoggedInUser,
   clearLoggedInUser,
 } from '@/infraestructure/localStorage'
-
-const USERS_KEY = 'users'
+import { LOCAL_STORAGE_USERS_KEY } from '@/constants'
 
 export const useAuth = () => {
   const login = useCallback(
     async (username: string, password: string): Promise<User> => {
-      const users: User[] = loadState(USERS_KEY) || []
+      const users: User[] = loadState(LOCAL_STORAGE_USERS_KEY) || []
 
       let user = users.find((user) => user.username === username)
       if (!user) {
@@ -27,7 +26,7 @@ export const useAuth = () => {
           tasks: [],
         }
         users.push(user)
-        saveState(USERS_KEY, users)
+        saveState(LOCAL_STORAGE_USERS_KEY, users)
       } else if (!(await bcrypt.compare(password, user.password))) {
         throw new Error('Invalid password')
       }

@@ -1,12 +1,12 @@
-const LOGGED_IN_USER_KEY = 'loggedInUser'
+import { LOCAL_STORAGE_LOGGED_IN_USER_KEY } from '@/constants'
 
-export const loadState = (key: string) => {
+export const loadState = <T>(key: string): T | undefined => {
   try {
     const serializedState = localStorage.getItem(key)
     if (serializedState === null) {
       return undefined
     }
-    return JSON.parse(serializedState)
+    return JSON.parse(serializedState) as T
   } catch (error) {
     throw `Failed to load data from localStorage: ${error}`
   }
@@ -21,14 +21,14 @@ export const saveState = <T>(key: string, state: T): void => {
   }
 }
 
-export const getLoggedInUser = () => {
-  return loadState(LOGGED_IN_USER_KEY)
+export const getLoggedInUser = (): string | undefined => {
+  return loadState(LOCAL_STORAGE_LOGGED_IN_USER_KEY)
 }
 
-export const setLoggedInUser = (userId: string) => {
-  saveState(LOGGED_IN_USER_KEY, userId)
+export const setLoggedInUser = (userId: string): void => {
+  saveState(LOCAL_STORAGE_LOGGED_IN_USER_KEY, userId)
 }
 
-export const clearLoggedInUser = () => {
-  localStorage.removeItem(LOGGED_IN_USER_KEY)
+export const clearLoggedInUser = (): void => {
+  localStorage.removeItem(LOCAL_STORAGE_LOGGED_IN_USER_KEY)
 }
