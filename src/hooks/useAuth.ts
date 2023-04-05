@@ -8,6 +8,7 @@ import {
   saveState,
   setLoggedInUser,
   clearLoggedInUser,
+  getLoggedInUser,
 } from '@/infraestructure/localStorage'
 import { LOCAL_STORAGE_USERS_KEY } from '@/constants'
 
@@ -27,7 +28,9 @@ export const useAuth = () => {
         }
         users.push(user)
         saveState(LOCAL_STORAGE_USERS_KEY, users)
-      } else if (!(await bcrypt.compare(password, user.password))) {
+      }
+
+      if (!(await bcrypt.compare(password, user.password))) {
         throw new Error('Invalid password')
       }
 
@@ -39,6 +42,13 @@ export const useAuth = () => {
   )
 
   const logout = () => {
+    const users: User[] = loadState(LOCAL_STORAGE_USERS_KEY) || []
+    const loggedInUserId = getLoggedInUser()
+    const updatedUsers = users.map((user) =>
+      user.id === loggedInUserId ? { ...user, tasks: [] } : user
+    )
+
+    saveState(LOCAL_STORAGE_USERS_KEY, updatedUsers)
     clearLoggedInUser()
   }
 
