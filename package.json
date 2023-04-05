@@ -14,6 +14,8 @@
     "lint:styles:fix": "stylelint '**/*.{scss,css}' --fix"
   },
   "dependencies": {
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.11.16",
     "bcryptjs": "^2.4.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

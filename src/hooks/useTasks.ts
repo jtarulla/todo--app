@@ -16,7 +16,7 @@ const useTasks = (): UseTasksReturnType => {
   const [user, setUser] = useState<User>()
 
   useEffect(() => {
-    const users = loadState(LOCAL_STORAGE_USERS_KEY) || []
+    const users: User[] = loadState(LOCAL_STORAGE_USERS_KEY) || []
     const loggedInUserId = getLoggedInUser()
     const loggedInUser = users.find((user: User) => user.id === loggedInUserId)
 
@@ -28,7 +28,7 @@ const useTasks = (): UseTasksReturnType => {
 
   useEffect(() => {
     if (user) {
-      const users = loadState(LOCAL_STORAGE_USERS_KEY) || []
+      const users: User[] = loadState(LOCAL_STORAGE_USERS_KEY) || []
       const updatedUsers = users.map((u: User) =>
         u.id === user.id ? { ...u, tasks } : u
       )

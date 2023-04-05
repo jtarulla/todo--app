@@ -54,4 +54,20 @@ describe('TasksPage', () => {
       expect(completedTask).toHaveClass('task-completed')
     })
   })
+
+  test('deletes a task when user clicks the delete button', async () => {
+    render(<TasksPage />)
+    const taskInput = screen.getByPlaceholderText('Add a task and ENTER')
+
+    await userEvent.type(taskInput, 'Task to delete')
+    await fireEvent.keyDown(taskInput, { key: 'Enter', code: 'Enter' })
+
+    const deleteButton = screen.getByTestId('DeleteIcon')
+
+    userEvent.click(deleteButton)
+
+    await waitFor(() => {
+      expect(screen.queryByText('Task to delete')).not.toBeInTheDocument()
+    })
+  })
 })

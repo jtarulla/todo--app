@@ -1,25 +1,30 @@
+import DeleteIcon from '@mui/icons-material/Delete'
+
 import { useTasksContext } from '../contexts/TasksContext'
 
 const TaskList = () => {
-  const { tasks, handleToggleTask } = useTasksContext()
+  const { tasks, handleToggleTask, handleDeleteTask } = useTasksContext()
 
   return (
     <div className="task-list">
-      {tasks.map((task) => (
-        <div className="task-item" key={task.id}>
+      {tasks.map(({ id, title, completed }) => (
+        <div className="task-item" key={id}>
           <label className="checkbox-wrapper">
             <input
               type="checkbox"
-              checked={task.completed}
-              onChange={() => handleToggleTask(task.id)}
+              checked={completed}
+              onChange={() => handleToggleTask(id)}
             />
             <span className="checkbox-indicator" />
           </label>
-          <span
-            className={`task-title ${task.completed ? 'task-completed' : ''}`}
-          >
-            {task.title}
+          <span className={`task-title ${completed ? 'task-completed' : ''}`}>
+            {title}
           </span>
+          <DeleteIcon
+            fontSize="small"
+            className="delete-button"
+            onClick={() => handleDeleteTask(id)}
+          />
         </div>
       ))}
     </div>

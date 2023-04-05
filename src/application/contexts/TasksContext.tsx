@@ -7,6 +7,7 @@ interface TasksContextData {
   user: User | undefined
   tasks: Task[]
   handleToggleTask: (taskId: string) => void
+  handleDeleteTask: (taskId: string) => void
   setTasks: (tasks: Task[]) => void
 }
 

@@ -6,6 +6,7 @@
     display: flex;
     align-items: center;
     padding: 8px 0;
+    border-bottom: 1px solid $component-background;
   
     .checkbox-wrapper {
       position: relative;
@@ -34,8 +35,18 @@
         }
       }
     }
+
+    .delete-button {
+      margin-right: 10px;
+      cursor: pointer;
+    }
   
     .task-title {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      max-width: 185px;
+      flex: 1;
       font-size: $task-font-size;
       line-height: 1.2;
       color: rgb(255 255 255);
